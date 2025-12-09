@@ -1,14 +1,28 @@
 package com.example.flex_reserve;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@Entity public class SlotEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name="slot")
+@Entity
+public class SlotEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    private Long id;
-    private String name;
-    private String surname;
+    String code;
+
+    String building;
+
+    Integer floor;
+
+    @Column(name = "slot_index")
+    Integer slotIndex;
 
 }
