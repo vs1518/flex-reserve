@@ -22,7 +22,5 @@ public class SlotEntity {
 
     Integer floor;
 
-    @Column(name = "slot_index")
-    Integer slotIndex;
 
 }

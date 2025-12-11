@@ -3,6 +3,7 @@ package com.example.flex_reserve;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -22,21 +23,32 @@ public class SlotRestController {
     // DELETE -> Suppression (Persistance DB)
 
     @GetMapping("/slot")
-    public SlotEntity get() {
+    public String get(@RequestParam String slotCode,
+                      @RequestParam String slotBuilding,
+                      @RequestParam Integer slotFloor
+    ) {
 
-        SlotEntity newSlot = SlotEntity.builder()
-                                        .code("M201")
-                                        .building("Maille Nord 1")
-                                        .floor(2)
-                                        .slotIndex(1)
-                                        .build();
+        log.info(String.valueOf(slotCode));
+        log.info(String.valueOf(slotBuilding));
+        log.info(String.valueOf(slotFloor));
 
-        log.info(newSlot.toString());
+        SlotEntity existingSlot = slotRepository.findFirstByCodeAndBuilding(slotCode, slotBuilding);
 
-        slotRepository.save(newSlot);
+        if (existingSlot == null) {
 
-        return newSlot;
+            SlotEntity newSlot = SlotEntity.builder()
+                    .code(slotCode)
+                    .building(slotBuilding)
+                    .floor(slotFloor)
+                    .build();
+
+            slotRepository.save(newSlot);
+
+            return "La place a bien été créé !";
+        } else {
+
+            return "La place existe déjà !";
+        }
     }
-
 
 }

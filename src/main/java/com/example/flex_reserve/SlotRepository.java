@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SlotRepository extends JpaRepository<SlotEntity, Long> {
+
+    public SlotEntity findFirstByCodeAndBuilding(String code, String building);
 }
