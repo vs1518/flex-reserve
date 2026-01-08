@@ -9,8 +9,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.example</groupId>
-    <artifactId>flex-reserve</artifactId>
+    <groupId>com.flex_reserve</groupId>
+    <artifactId>library</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>flex-reserve</name>
     <description>FlexReserve - API REST</description>
